@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -15,6 +16,7 @@ import com.example.demo.form.Student;
  * @author h30032094
  * @since 2022-08-16
  */
+@Mapper
 public interface StudentDao {
     @Insert(value = "insert into student(name, gender, email) values(#{name}, #{gender}, #{email})")
     void save(Student student);

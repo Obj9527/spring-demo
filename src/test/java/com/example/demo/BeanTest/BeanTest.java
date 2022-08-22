@@ -75,9 +75,6 @@ public class BeanTest {
 
     @Test
     public void test06() {
-//        for (int i = 1; i < 11; i++) {
-//            studentService.save(new Student("小明" + i, "男", String.format("xiaoming%d@qq.com", i)));
-//        }
         studentService.save(new Student("小明", "男", "xiaoming@qq.com"));
     }
 

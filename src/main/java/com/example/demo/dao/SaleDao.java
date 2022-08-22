@@ -1,7 +1,6 @@
 package com.example.demo.dao;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Mapper;
 
 import com.example.demo.form.Sale;
 
@@ -11,6 +10,7 @@ import com.example.demo.form.Sale;
  * @author h30032094
  * @since 2022-08-19
  */
+@Mapper
 public interface SaleDao {
     void save(Sale sale);
 
