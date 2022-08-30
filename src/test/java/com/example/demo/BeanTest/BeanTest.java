@@ -2,6 +2,8 @@ package com.example.demo.BeanTest;
 
 import java.util.Date;
 
+import javax.mail.MessagingException;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import com.example.demo.config.SpringConfig;
 import com.example.demo.form.Sale;
 import com.example.demo.form.Student;
+import com.example.demo.service.MailService;
 import com.example.demo.service.ResourceService;
 import com.example.demo.service.SaleService;
 import com.example.demo.service.StudentService;
@@ -34,6 +37,8 @@ public class BeanTest {
     private ResourceService resourceService;
     @Autowired
     private SaleService saleService;
+    @Autowired
+    private MailService mailService;
 
     @Test
     public void test01() {
@@ -101,5 +106,10 @@ public class BeanTest {
         sale.setNum(1);
         saleService.save(sale);
         System.out.println(saleService.findById(1));
+    }
+
+    @Test
+    public void test11() throws MessagingException {
+        mailService.send();
     }
 }

@@ -38,7 +38,9 @@ public class MyAdvise {
         Object args[] = joinPoint.getArgs();
         System.out.println(Arrays.toString(args));
         for (int i = 0; i < args.length; i++) {
-            args[i] = args[i].toString().trim();
+            if(args[i].getClass().equals(String.class)) {
+                args[i] = args[i].toString().trim();
+            }
         }
         return joinPoint.proceed(args);
     }

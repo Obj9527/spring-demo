@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.AccountDao">
+    <insert id="save">
+        insert into tb1_account(`account_name`, `money`) values(#{accountName}, #{money})
+    </insert>
+
+    <update id="update">
+        UPDATE tb1_account
+        SET `account_name` = #{accountName}, `money` = #{money}
+        where id = #{id}
+    </update>
+
+    <select id="findById" resultType="com.example.demo.form.Account">
+        select `id`, `account_name` as accountName, `money` from tb1_account where id = #{id}
+    </select>
+
+    <select id="findAll" resultType="com.example.demo.form.Account">
+        select `id`, `account_name`, `money` from tb1_account where 1=1
+    </select>
+</mapper>
