@@ -1,6 +1,5 @@
 package com.example.demo.service.impl;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,18 +24,25 @@ public class AccountServiceImpl implements AccountService {
     private AccountDao accountDao;
 
     @Override
-    public void transfer(Account out, Account in, Long money) {
+    public boolean transfer(Account out, Account in, Long money) {
         Account outAccount = accountDao.findById(out.getId());
+        Account inAccount = accountDao.findById(in.getId());
+        if(outAccount == null) {
+            throw new RuntimeException("转出账号不存在，请输入正确的账号");
+        }
+        if(inAccount == null) {
+            throw new RuntimeException("转入账号不存在，请输入正确的账号");
+        }
         outAccount.setMoney(outAccount.getMoney() - money);
         accountDao.update(outAccount);
-        Account inAccount = accountDao.findById(in.getId());
         inAccount.setMoney(inAccount.getMoney() + money);
         accountDao.update(inAccount);
+        return true;
     }
 
     @Override
-    public void save(Account account) {
-
+    public boolean save(Account account) {
+        return false;
     }
 
     @Override

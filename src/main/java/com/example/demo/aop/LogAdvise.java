@@ -35,17 +35,15 @@ public class LogAdvise {
         Long outId = ((Account) args[0]).getId();
         Long inId = ((Account) args[1]).getId();
         String money = args[2].toString();
-        Account out = accountDao.findById(outId);
-        Account in = accountDao.findById(inId);
+        String message = String.format("由%s转到%s金额为%s", outId, inId, money);
         Object result = null;
 
-        String message = String.format("由%s转到%s金额为%s", out.getAccountName(), in.getAccountName(), money);
         try {
             result = joinPoint.proceed();
             Log log = new Log(message, money, "成功");
             logDao.save(log);
         } catch (Exception e) {
-            Log log = new Log(message, money, "失败", e.getMessage());
+            Log log = new Log(message, money, "失败", e.toString());
             logDao.save(log);
             throw e;
         }

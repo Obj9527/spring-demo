@@ -12,9 +12,9 @@ import com.example.demo.form.Account;
  * @since 2022-08-29
  */
 public interface AccountService {
-    void transfer(Account out, Account in, Long money) throws IOException;
+    boolean transfer(Account out, Account in, Long money) throws IOException;
 
-    void save(Account account);
+    boolean save(Account account);
 
     Account findById(Integer id);
 
